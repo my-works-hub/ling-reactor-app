@@ -1,3 +1,9 @@
 .header {
   padding-block: 15px;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
