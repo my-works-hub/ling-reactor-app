@@ -1,9 +1,10 @@
+import './App.module.scss'
+import { Header } from './components/Header'
+
 export const App = () => {
   return (
     <div className="App">
-      <header className="App-header">Header</header>
+      <Header />
     </div>
   )
 }
-
-export default App
