@@ -1,5 +1,6 @@
 {
   "name": "react-app-template",
+  "homepage": "https://my-works-hub.github.io/ling-reactor-app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,6 +17,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -47,6 +50,7 @@
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-decorator-position": "^6.0.0",
     "eslint-plugin-prettier": "^5.2.3",
+    "gh-pages": "^6.3.0",
     "prettier": "^3.5.3"
   }
 }
