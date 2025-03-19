@@ -4,9 +4,23 @@
   padding-inline: 15px;
 }
 
-body {
-  min-height: 100vh;
+html,body {
+  height: 100vh;
   background: linear-gradient(90deg, #191536 15%, #000 100%);
   font-family: Inter, sans-serif;
   color: $white;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
 }
