@@ -9,12 +9,31 @@
 }
 
 .login-page__title {
+  margin-bottom: 40px;
   font-size: 26px;
   font-weight: 700;
   line-height: 130%;
   letter-spacing: 1.3px;
   span {
-    color: $accent;
+    color: $color-accent;
     font-weight: 400;
   }
+}
+
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  p {
+    color: $color-accent;
+  }
+}
+
+.auth-button {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: 0.5px;
 }

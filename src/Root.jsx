@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, HashRouter as Router, Routes } from 'react-router-dom'
 import { App } from './App'
-import { LoginPage } from './pages/StartPage/LoginPage'
+import { LoginPage } from './pages/LoginPage/LoginPage'
 
 export const Root = () => (
   <Router>
