@@ -1,7 +1,7 @@
 import React from 'react'
-//import { Link } from 'react-router-dom'
 import './MainLogo.scss'
+import { Link } from 'react-router-dom'
 
 export const MainLogo = () => {
-  return <a href="/" className="main-logo bgd-img" />
+  return <Link to="/" className="main-logo bgd-img" />
 }
