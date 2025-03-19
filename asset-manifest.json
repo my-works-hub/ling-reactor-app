@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ling-reactor-app/static/css/main.6017b5f3.css",
+    "main.js": "/ling-reactor-app/static/js/main.dba30b96.js",
+    "static/media/LOGO.svg": "/ling-reactor-app/static/media/LOGO.1d03032a4c53b281b66c.svg",
+    "static/media/light-mode-button-white.svg": "/ling-reactor-app/static/media/light-mode-button-white.5731ca386fa9290e85f6.svg",
+    "index.html": "/ling-reactor-app/index.html",
+    "main.6017b5f3.css.map": "/ling-reactor-app/static/css/main.6017b5f3.css.map",
+    "main.dba30b96.js.map": "/ling-reactor-app/static/js/main.dba30b96.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6017b5f3.css",
+    "static/js/main.dba30b96.js"
+  ]
+}
