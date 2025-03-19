@@ -2,5 +2,12 @@
   display: block;
   width: 46px;
   height: 46px;
-  background-image: url('../../assets/icons/LOGO.svg');
+
+  &--dark {
+    background-image: url('../../assets/icons/LOGO.svg');
+  }
+
+  &--light {
+    background-image: url('../../assets/icons/LOGO-light-theme.svg');
+  }
 }
