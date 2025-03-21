@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AuthModal } from '../../components/AuthModal/AuthModal'
 import './LoginPage.scss'
 
@@ -6,6 +6,30 @@ export const LoginPage = () => {
   const [authModalIsOpen, setAuthModalIsOpen] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
   const [isRegistration, setIsRegistration] = useState(false)
+
+  useEffect(() => {
+    const modalState = localStorage.getItem('authModalIsOpen')
+    if (modalState === 'true') {
+      setAuthModalIsOpen(true)
+      const isLoginState = localStorage.getItem('isLogin') === 'true'
+      const isRegistrationState =
+        localStorage.getItem('isRegistration') === 'true'
+      setIsLogin(isLoginState)
+      setIsRegistration(isRegistrationState)
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('authModalIsOpen', authModalIsOpen)
+    localStorage.setItem('isLogin', isLogin)
+    localStorage.setItem('isRegistration', isRegistration)
+  }, [authModalIsOpen, isLogin, isRegistration])
+
+  const closeAuthModal = () => {
+    setAuthModalIsOpen(false)
+    setIsLogin(false)
+    setIsRegistration(false)
+  }
 
   return (
     <div className="login-page">
@@ -41,7 +65,7 @@ export const LoginPage = () => {
         </div>
       ) : (
         <AuthModal
-          setAuthModalIsOpen={setAuthModalIsOpen}
+          closeAuthModal={closeAuthModal}
           isLogin={isLogin}
           isRegistration={isRegistration}
         />

@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import './AuthModal.scss'
 
-export const AuthModal = ({ setAuthModalIsOpen, isLogin, isRegistration }) => {
+export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
   return (
     <div className="auth-modal">
       <button
         className="close-button bgd-img"
-        onClick={() => setAuthModalIsOpen(false)}
+        onClick={() => closeAuthModal()}
       />
       {isLogin && (
         <div className="login-content">
@@ -76,7 +76,7 @@ export const AuthModal = ({ setAuthModalIsOpen, isLogin, isRegistration }) => {
 }
 
 AuthModal.propTypes = {
-  setAuthModalIsOpen: PropTypes.func.isRequired,
+  closeAuthModal: PropTypes.func.isRequired,
   isLogin: PropTypes.bool.isRequired,
   isRegistration: PropTypes.bool.isRequired,
 }
