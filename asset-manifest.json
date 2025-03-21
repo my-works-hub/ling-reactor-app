@@ -1,17 +1,21 @@
 {
   "files": {
-    "main.css": "/ling-reactor-app/static/css/main.58cd24b9.css",
-    "main.js": "/ling-reactor-app/static/js/main.0001469d.js",
+    "main.css": "/ling-reactor-app/static/css/main.dbf3265e.css",
+    "main.js": "/ling-reactor-app/static/js/main.57a44628.js",
     "static/media/LOGO-light-theme.svg": "/ling-reactor-app/static/media/LOGO-light-theme.ba66ef7170ace37f66c1.svg",
     "static/media/LOGO.svg": "/ling-reactor-app/static/media/LOGO.1d03032a4c53b281b66c.svg",
     "static/media/to-dark-mode-button.svg": "/ling-reactor-app/static/media/to-dark-mode-button.8bec99e3a475d4a646c5.svg",
     "static/media/to-light-mode-button.svg": "/ling-reactor-app/static/media/to-light-mode-button.5731ca386fa9290e85f6.svg",
+    "static/media/user-icon.svg": "/ling-reactor-app/static/media/user-icon.614fc0108c205566b3df.svg",
+    "static/media/password-icon.svg": "/ling-reactor-app/static/media/password-icon.cb2dafe8841260c90ca4.svg",
     "index.html": "/ling-reactor-app/index.html",
-    "main.58cd24b9.css.map": "/ling-reactor-app/static/css/main.58cd24b9.css.map",
-    "main.0001469d.js.map": "/ling-reactor-app/static/js/main.0001469d.js.map"
+    "static/media/email-icon.svg": "/ling-reactor-app/static/media/email-icon.6c2e1e64e1741527148a.svg",
+    "static/media/close-button.svg": "/ling-reactor-app/static/media/close-button.53078f3e70aec3f3d479.svg",
+    "main.dbf3265e.css.map": "/ling-reactor-app/static/css/main.dbf3265e.css.map",
+    "main.57a44628.js.map": "/ling-reactor-app/static/js/main.57a44628.js.map"
   },
   "entrypoints": [
-    "static/css/main.58cd24b9.css",
-    "static/js/main.0001469d.js"
+    "static/css/main.dbf3265e.css",
+    "static/js/main.57a44628.js"
   ]
 }
