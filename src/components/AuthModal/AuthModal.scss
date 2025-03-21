@@ -1,8 +1,90 @@
 @import '../../styles/variables';
 
 .auth-modal {
+  position: relative;
   width: 245px;
-  padding: 16px;
+  padding: 30px 16px;
   background-color: $color-accent;
   border-radius: 28px;
+}
+
+.auth-modal__title {
+  margin-bottom: 30px;
+}
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  background-image: url('../../assets/icons/close-button.svg');
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-up-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.auth-input {
+  padding-left: 20px;
+  width: 100%;
+  height: 45px;
+  border-radius: 23px;
+  background-color: #d9d9d9;
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: 10px;
+  box-shadow: 1px 0px 16px 2px rgba(25, 21, 54, 0.85);
+  color: #191536;
+
+  &::placeholder {
+    padding-left: 20px;
+  }
+}
+
+input[name="user"] {
+  background-image: url('../../assets/icons/user-icon.svg');
+}
+
+input[name="password"] {
+  background-image: url('../../assets/icons/password-icon.svg');
+}
+
+input[name="email"] {
+  background-image: url('../../assets/icons/email-icon.svg');
+}
+
+input:focus {
+  background: none;
+}
+
+input:not(:placeholder-shown) {
+  background: none;
+}
+
+.auth-submit-button {
+  width: 100%;
+  height: 45px;
+  border-radius: 23px;
+  background: #191536;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: 0.7px;
 }

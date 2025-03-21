@@ -2,11 +2,10 @@ import PropTypes from 'prop-types'
 import './AuthModal.scss'
 
 export const AuthModal = ({ setAuthModalIsOpen, isLogin, isRegistration }) => {
-  console.log(isLogin)
   return (
     <div className="auth-modal">
       <button
-        className="close-button"
+        className="close-button bgd-img"
         onClick={() => setAuthModalIsOpen(false)}
       />
       {isLogin && (
@@ -30,7 +29,7 @@ export const AuthModal = ({ setAuthModalIsOpen, isLogin, isRegistration }) => {
               required
             />
 
-            <button type="submit" className="auth-button">
+            <button type="submit" className="auth-submit-button">
               Login
             </button>
           </form>
@@ -66,7 +65,7 @@ export const AuthModal = ({ setAuthModalIsOpen, isLogin, isRegistration }) => {
               required
             />
 
-            <button type="submit" className="auth-button">
+            <button type="submit" className="auth-submit-button">
               Add new user
             </button>
           </form>
