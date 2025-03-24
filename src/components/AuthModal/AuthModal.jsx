@@ -1,7 +1,13 @@
 import PropTypes from 'prop-types'
 import './AuthModal.scss'
+import { useState } from 'react'
 
 export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
+  const [user, setUser] = useState(null)
+  const [password, setPassword] = useState(null)
+  const [newUser, setNewUser] = useState(null)
+  const [newEmail, setNewEmail] = useState(null)
+  const [newPassword, setNewPassword] = useState(null)
   return (
     <div className="auth-modal">
       <button
@@ -19,6 +25,8 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
               className="auth-input"
               placeholder="username"
               required
+              value={user}
+              onChange={(event) => setUser(event.target.value)}
             />
             <input
               type="password"
@@ -27,6 +35,8 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
               className="auth-input"
               placeholder="password"
               required
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
             />
 
             <button type="submit" className="auth-submit-button">
@@ -47,6 +57,8 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
               className="auth-input"
               placeholder="email"
               required
+              value={newEmail}
+              onChange={(event) => setNewEmail(event.target.value)}
             />
             <input
               type="text"
@@ -55,6 +67,8 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
               className="auth-input"
               placeholder="username"
               required
+              value={newUser}
+              onChange={(event) => setNewUser(event.target.value)}
             />
             <input
               type="password"
@@ -63,6 +77,8 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
               className="auth-input"
               placeholder="password"
               required
+              value={newPassword}
+              onChange={(event) => setNewPassword(event.target.value)}
             />
 
             <button type="submit" className="auth-submit-button">
