@@ -3,11 +3,33 @@ import './AuthModal.scss'
 import { useState } from 'react'
 
 export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
-  const [user, setUser] = useState(null)
-  const [password, setPassword] = useState(null)
-  const [newUser, setNewUser] = useState(null)
-  const [newEmail, setNewEmail] = useState(null)
-  const [newPassword, setNewPassword] = useState(null)
+  const [user, setUser] = useState('')
+  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+
+  const handleLoginSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      const response = await fetch('http://localhost:5000/users/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+        cache: 'no-store',
+      })
+
+      const data = await response.json()
+      if (response.ok) {
+        alert('Login successful')
+      } else {
+        alert(data.message || 'Login failed')
+      }
+      closeAuthModal()
+    } catch (error) {
+      alert('Error logging in')
+      console.error(error)
+    }
+  }
+
   return (
     <div className="auth-modal">
       <button
@@ -17,16 +39,16 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
       {isLogin && (
         <div className="login-content">
           <h2 className="auth-modal__title">Sign in</h2>
-          <form className="auth-form">
+          <form className="auth-form" onSubmit={handleLoginSubmit}>
             <input
-              type="text"
-              id="user"
-              name="user"
+              type="email"
+              id="email"
+              name="email"
               className="auth-input"
-              placeholder="username"
+              placeholder="email"
               required
-              value={user}
-              onChange={(event) => setUser(event.target.value)}
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
             <input
               type="password"
@@ -57,8 +79,8 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
               className="auth-input"
               placeholder="email"
               required
-              value={newEmail}
-              onChange={(event) => setNewEmail(event.target.value)}
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
             <input
               type="text"
@@ -67,8 +89,8 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
               className="auth-input"
               placeholder="username"
               required
-              value={newUser}
-              onChange={(event) => setNewUser(event.target.value)}
+              value={user}
+              onChange={(event) => setUser(event.target.value)}
             />
             <input
               type="password"
@@ -77,8 +99,8 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
               className="auth-input"
               placeholder="password"
               required
-              value={newPassword}
-              onChange={(event) => setNewPassword(event.target.value)}
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
             />
 
             <button type="submit" className="auth-submit-button">
