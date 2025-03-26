@@ -1,11 +1,15 @@
 import PropTypes from 'prop-types'
 import './AuthModal.scss'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
+  const [, /*isLoading*/ setIsLoading] = useState(false)
+  const [, /*isSuccessful*/ setIsSuccessful] = useState(false)
+  const navigate = useNavigate()
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault()
@@ -16,17 +20,22 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
         body: JSON.stringify({ email, password }),
         cache: 'no-store',
       })
-
+      setIsLoading(true)
       const data = await response.json()
       if (response.ok) {
-        alert('Login successful')
+        setIsSuccessful(true)
+        setTimeout(() => {
+          closeAuthModal()
+          navigate('/profile')
+        }, 1000)
       } else {
         alert(data.message || 'Login failed')
       }
-      closeAuthModal()
     } catch (error) {
       alert('Error logging in')
       console.error(error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -43,13 +52,14 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
 
       if (response.ok) {
         alert('Registration successful')
-        closeAuthModal()
       } else {
         alert(data.message || 'Registration failed')
       }
     } catch (error) {
       alert('Error registering')
       console.error(error)
+    } finally {
+      closeAuthModal()
     }
   }
 
@@ -72,6 +82,7 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
               required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
+              autoComplete="current-email"
             />
             <input
               type="password"
@@ -82,6 +93,7 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
               required
               value={password}
               onChange={(event) => setPassword(event.target.value)}
+              autoComplete="current-password"
             />
 
             <button type="submit" className="auth-submit-button">
@@ -104,6 +116,7 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
               required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
+              autoComplete="new-email"
             />
             <input
               type="text"
@@ -114,6 +127,7 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
               required
               value={user}
               onChange={(event) => setUser(event.target.value)}
+              autoComplete="new-user"
             />
             <input
               type="password"
@@ -124,6 +138,7 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
               required
               value={password}
               onChange={(event) => setPassword(event.target.value)}
+              autoComplete="new-password"
             />
 
             <button type="submit" className="auth-submit-button">

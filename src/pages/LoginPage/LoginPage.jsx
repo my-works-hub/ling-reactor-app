@@ -8,21 +8,21 @@ export const LoginPage = () => {
   const [isRegistration, setIsRegistration] = useState(false)
 
   useEffect(() => {
-    const modalState = localStorage.getItem('authModalIsOpen')
+    const modalState = sessionStorage.getItem('authModalIsOpen')
     if (modalState === 'true') {
       setAuthModalIsOpen(true)
-      const isLoginState = localStorage.getItem('isLogin') === 'true'
+      const isLoginState = sessionStorage.getItem('isLogin') === 'true'
       const isRegistrationState =
-        localStorage.getItem('isRegistration') === 'true'
+        sessionStorage.getItem('isRegistration') === 'true'
       setIsLogin(isLoginState)
       setIsRegistration(isRegistrationState)
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('authModalIsOpen', authModalIsOpen)
-    localStorage.setItem('isLogin', isLogin)
-    localStorage.setItem('isRegistration', isRegistration)
+    sessionStorage.setItem('authModalIsOpen', authModalIsOpen)
+    sessionStorage.setItem('isLogin', isLogin)
+    sessionStorage.setItem('isRegistration', isRegistration)
   }, [authModalIsOpen, isLogin, isRegistration])
 
   const closeAuthModal = () => {
