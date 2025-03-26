@@ -2,10 +2,24 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import process from 'process'
 
 dotenv.config()
 
 const app = express()
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000,
+  })
+  .then(() => {
+    console.log('Connected to MongoDB')
+  })
+  .catch((err) => {
+    console.error('MongoDB connection error:', err)
+  })
+
 app.use(express.json()) // Для парсинга JSON тела запросов
 app.use(cors()) // Для разрешения кроссдоменных запросов
 
@@ -13,6 +27,7 @@ app.use(cors()) // Для разрешения кроссдоменных зап
 const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true }, // Добавляем пароль
+  user: { type: String, required: true },
   dictionaries: [
     {
       name: String,
@@ -25,7 +40,7 @@ const User = mongoose.model('User', UserSchema)
 
 // Регистрация пользователя
 app.post('/users/register', async (req, res) => {
-  const { email, password } = req.body
+  const { email, password, user } = req.body
 
   // Проверяем, существует ли уже пользователь с таким email
   const existingUser = await User.findOne({ email })
@@ -34,7 +49,7 @@ app.post('/users/register', async (req, res) => {
   }
 
   // Создаем нового пользователя
-  const newUser = new User({ email, password })
+  const newUser = new User({ email, password, user })
   await newUser.save()
   res.status(201).json({ message: 'User created successfully' })
 })

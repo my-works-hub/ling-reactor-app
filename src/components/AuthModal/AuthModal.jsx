@@ -30,6 +30,29 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
     }
   }
 
+  const handleRegistrationSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      const response = await fetch('http://localhost:5000/users/register', {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({ email, password, user }),
+        cache: 'no-store',
+      })
+      const data = await response.json()
+
+      if (response.ok) {
+        alert('Registration successful')
+        closeAuthModal()
+      } else {
+        alert(data.message || 'Registration failed')
+      }
+    } catch (error) {
+      alert('Error registering')
+      console.error(error)
+    }
+  }
+
   return (
     <div className="auth-modal">
       <button
@@ -71,7 +94,7 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
       {isRegistration && (
         <div className="sign-up-content">
           <h2 className="auth-modal__title">Sign up</h2>
-          <form className="auth-form">
+          <form className="auth-form" onSubmit={handleRegistrationSubmit}>
             <input
               type="email"
               id="email"
