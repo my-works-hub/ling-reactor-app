@@ -1,0 +1,15 @@
+# Node.js зависимости для бэкенда
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Логи
+logs/
+*.log
+
+# Переменные окружения (для бэкенда)
+.env
+
+# Базовые файлы IDE (если используешь)
+.vscode/
+.idea/
