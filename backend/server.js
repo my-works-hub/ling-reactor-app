@@ -1,12 +1,20 @@
+/* eslint-disable no-undef */
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import process from 'process'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+// Для получения текущей директории в ESM
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 dotenv.config()
 
 const app = express()
+
+// Подключение к базе данных
 mongoose
   .connect(process.env.MONGO_URI, {
     serverSelectionTimeoutMS: 30000,
@@ -24,7 +32,7 @@ app.use(cors()) // Для разрешения кроссдоменных зап
 // Схема пользователя (User) с полем пароля для логина
 const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }, // Добавляем пароль
+  password: { type: String, required: true },
   user: { type: String, required: true },
   dictionaries: [
     {
@@ -40,13 +48,11 @@ const User = mongoose.model('User', UserSchema)
 app.post('/users/register', async (req, res) => {
   const { email, password, user } = req.body
 
-  // Проверяем, существует ли уже пользователь с таким email
   const existingUser = await User.findOne({ email })
   if (existingUser) {
     return res.status(400).json({ message: 'User already exists' })
   }
 
-  // Создаем нового пользователя
   const newUser = new User({ email, password, user })
   await newUser.save()
   res.status(201).json({ message: 'User created successfully' })
@@ -56,18 +62,15 @@ app.post('/users/register', async (req, res) => {
 app.post('/users/login', async (req, res) => {
   const { email, password } = req.body
 
-  // Находим пользователя по email
   const user = await User.findOne({ email })
   if (!user) {
     return res.status(404).json({ message: 'User not found' })
   }
 
-  // Проверяем, совпадает ли пароль
   if (user.password !== password) {
     return res.status(401).json({ message: 'Invalid credentials' })
   }
 
-  // Если логин успешен
   res.json({ message: 'Login successful' })
 })
 
@@ -96,7 +99,15 @@ app.post('/users/:email/dictionary/:dictName', async (req, res) => {
   res.json({ message: 'Word added successfully' })
 })
 
+// Обслуживание статики фронтенда (React build), если фронтенд собран в корне
+app.use(express.static(path.join(__dirname, 'build')))
+
+// Возвращаем index.html для всех других маршрутов (для корректной работы SPA)
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
+})
+
 // Запуск сервера
-app.listen(5000, () => {
-  console.log('Server running on port 5000')
+app.listen(process.env.PORT || 5000, () => {
+  console.log(`Server running on port ${process.env.PORT || 5000}`)
 })
