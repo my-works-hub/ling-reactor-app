@@ -2,12 +2,13 @@ import PropTypes from 'prop-types'
 import './AuthModal.scss'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+/*import { ClockLoader } from 'react-spinners'*/
 
 export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
-  const [, /*isLoading*/ setIsLoading] = useState(false)
+  /*const [isLoading, setIsLoading] = useState(false)*/
   const [, /*isSuccessful*/ setIsSuccessful] = useState(false)
   const navigate = useNavigate()
 
@@ -20,14 +21,11 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
         body: JSON.stringify({ email, password }),
         cache: 'no-store',
       })
-      setIsLoading(true)
       const data = await response.json()
       if (response.ok) {
         setIsSuccessful(true)
-        setTimeout(() => {
-          closeAuthModal()
-          navigate('/profile')
-        }, 1000)
+        closeAuthModal()
+        navigate('/profile')
       } else {
         alert(data.message || 'Login failed')
       }
@@ -35,7 +33,7 @@ export const AuthModal = ({ closeAuthModal, isLogin, isRegistration }) => {
       alert('Error logging in')
       console.error(error)
     } finally {
-      setIsLoading(false)
+      //setTimeout(() => setIsLoading(false), 3000)
     }
   }
 
