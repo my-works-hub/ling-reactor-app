@@ -100,12 +100,12 @@ app.post('/users/:email/dictionary/:dictName', async (req, res) => {
 })
 
 // Обслуживание статики фронтенда (React build), если фронтенд собран в корне
-app.use(express.static(path.join(__dirname, 'build')))
+/*app.use(express.static(path.join(__dirname, 'build')))
 
 // Возвращаем index.html для всех других маршрутов (для корректной работы SPA)
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
-})
+})*/
 
 // Запуск сервера
 app.listen(process.env.PORT || 5000, () => {
